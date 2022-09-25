@@ -1,24 +1,14 @@
-# my-personal-costs
+# My personal costs
 
-## Project setup
+### Приложение для подсчёта трат
+
+В приложение можно добавлять категорию трат, сумму и дату. Если дату не указать, по умолчанию добавляется сегодняшняя.
+
+## Первый запуск
 ```
 yarn install
 ```
 
-### Compiles and hot-reloads for development
 ```
 yarn serve
 ```
-
-### Compiles and minifies for production
-```
-yarn build
-```
-
-### Lints and fixes files
-```
-yarn lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
