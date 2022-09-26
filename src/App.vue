@@ -4,8 +4,15 @@
     <h1>My personal costs</h1>
     <main>
       <div class="costs">
-        <AddPaymentsForm @addPayment="addPayment" @clicked="clicked" :show="showForm"/>
-        <PaymentsDisplay :items="paymentsList" />
+        <AddPaymentsForm
+          @addPayment="addPayment"
+          @clicked="clicked"
+          :show="showForm"
+        />
+        <PaymentsDisplay
+          :items="paymentsList"
+          :total="paymentsListTotalAmount"
+        />
       </div>
       <div class="chart">chart</div>
     </main>
@@ -15,6 +22,7 @@
 <script>
 import PaymentsDisplay from "./components/PaymentsDisplay.vue";
 import AddPaymentsForm from "./components/AddPaymentsForm.vue";
+import { mapActions, mapGetters, mapMutations } from "vuex";
 
 export default {
   name: "App",
@@ -24,39 +32,26 @@ export default {
   },
   data() {
     return {
-      paymentsList: [],
       showForm: false,
     };
   },
+  computed: {
+    ...mapGetters(["paymentsList", "paymentsListTotalAmount"]),
+  },
   methods: {
-    fetchData() {
-      return [
-        {
-          date: "28.03.2020",
-          category: "Food",
-          value: 169,
-        },
-        {
-          date: "24.03.2020",
-          category: "Transport",
-          value: 360,
-        },
-        {
-          date: "24.03.2020",
-          category: "Food",
-          value: 532,
-        },
-      ];
-    },
-    addPayment(data) {
-      this.paymentsList = [...this.paymentsList, data];
-    },
+    ...mapActions(["fetchData"]),
+    ...mapMutations(["ADD_PAYMENT_LIST", "TOGGLE_IS_LOADING"]),
     clicked(isShow) {
       this.showForm = isShow;
     },
+    addPayment(data) {
+      this.ADD_PAYMENT_LIST(data);
+    },
   },
   created() {
-    this.paymentsList = this.fetchData();
+    this.TOGGLE_IS_LOADING(true);
+    this.fetchData();
+    this.TOGGLE_IS_LOADING(false);
   },
 };
 </script>
