@@ -4,6 +4,7 @@
     <div v-show="show">
       <input type="date" placeholder="date" v-model="date" />
       <select v-model="category">
+        <option value="">Select category</option>
         <option
           v-for="(c, indx) in categoryList"
           :key="indx"
