@@ -29,15 +29,6 @@ export default {
 
 <style module lang="scss">
 .wrapper {
-  //
-}
-.loader {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-top: 25px;
-  img {
-    width: 65px;
-  }
+ //
 }
 </style>

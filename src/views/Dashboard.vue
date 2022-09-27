@@ -8,7 +8,9 @@
           @clicked="clicked"
           :show="showForm"
         />
+        <Preloader v-if="isLoading" />
         <PaymentsDisplay
+          v-else
           :items="paymentsList"
           :total="paymentsListTotalAmount"
         />
@@ -21,12 +23,14 @@
 <script>
 import PaymentsDisplay from "../components/PaymentsDisplay.vue";
 import AddPaymentsForm from "../components/AddPaymentsForm.vue";
+import Preloader from "../components/Preloader.vue";
 import { mapActions, mapGetters, mapMutations } from "vuex";
 export default {
   name: "Dashboard",
   components: {
     PaymentsDisplay,
     AddPaymentsForm,
+    Preloader,
   },
   data() {
     return {
@@ -34,11 +38,11 @@ export default {
     };
   },
   computed: {
-    ...mapGetters(["paymentsList", "paymentsListTotalAmount"]),
+    ...mapGetters(["paymentsList", "paymentsListTotalAmount", "isLoading"]),
   },
   methods: {
     ...mapActions(["fetchData"]),
-    ...mapMutations(["ADD_PAYMENT_LIST", "TOGGLE_IS_LOADING"]),
+    ...mapMutations(["ADD_PAYMENT_LIST"]),
     clicked(isShow) {
       this.showForm = isShow;
     },
@@ -47,9 +51,7 @@ export default {
     },
   },
   created() {
-    this.TOGGLE_IS_LOADING(true);
     this.fetchData();
-    this.TOGGLE_IS_LOADING(false);
   },
 };
 </script>
@@ -60,7 +62,7 @@ export default {
   gap: 150px;
 }
 .costs {
-  //
+  width: 400px;
 }
 .chart {
   //

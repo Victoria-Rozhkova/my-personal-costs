@@ -15,6 +15,7 @@ export default {
   },
   actions: {
     fetchData({ commit }) {
+      commit("TOGGLE_IS_LOADING", true);
       setTimeout(() => {
         const data = [
           {
@@ -34,6 +35,7 @@ export default {
           },
         ];
         commit("SET_PAYMENTS_LIST", data);
+        commit("TOGGLE_IS_LOADING", false);
       }, 3000);
     },
   },
