@@ -1,9 +1,9 @@
 <template>
   <div :class="$style.wrapper">
-    <div v-for="(item, indx) in items" :key="indx">
+    <div v-for="(item, indx) in paymentsList" :key="indx">
       {{ indx + 1 }} : {{ item.date }} {{ item.category }} {{ item.value }}
     </div>
-    <div>Total: {{ total }}</div>
+    <div>Total: {{ paymentsListTotalAmount }}</div>
   </div>
 </template>
 
@@ -12,23 +12,14 @@ import { mapGetters } from "vuex";
 
 export default {
   name: "PaymentsDisplay",
-  props: {
-    items: {
-      type: Array,
-      default: () => [],
-    },
-    total: {
-      type: Number,
-    },
-  },
   computed: {
-    ...mapGetters(["isLoading"]),
+    ...mapGetters(["paymentsList", "paymentsListTotalAmount"]),
   },
 };
 </script>
 
 <style module lang="scss">
 .wrapper {
- //
+  //
 }
 </style>

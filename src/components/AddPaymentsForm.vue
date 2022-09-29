@@ -1,24 +1,17 @@
 <template>
-  <div :class="$style.wrapper">
-    <button @click="$emit('clicked', !show)">Add new cost +</button>
-    <div v-show="show">
-      <input type="date" placeholder="date" v-model="date" />
-      <select v-model="category">
-        <option value="">Select category</option>
-        <option
-          v-for="(c, indx) in categoryList"
-          :key="indx"
-          :value="c.category"
-        >
-          {{ c.category }}
-        </option>
-      </select>
-      <input type="number" placeholder="value" v-model.number="value" />
-      <button @click="onSave">Save</button>
-      <div>
-        <input type="text" placeholder="new category" v-model="newCategory" />
-        <button @click="addCategory">Add</button>
-      </div>
+  <div>
+    <input type="date" placeholder="date" v-model="date" />
+    <select v-model="category">
+      <option value="">Select category</option>
+      <option v-for="(c, indx) in categoryList" :key="indx" :value="c.category">
+        {{ c.category }}
+      </option>
+    </select>
+    <input type="number" placeholder="value" v-model.number="value" />
+    <button @click="onSave">Save</button>
+    <div>
+      <input type="text" placeholder="new category" v-model="newCategory" />
+      <button @click="addCategory">Add</button>
     </div>
   </div>
 </template>
@@ -28,9 +21,6 @@ import { mapActions, mapGetters, mapMutations } from "vuex";
 
 export default {
   name: "AddPaymentsForm",
-  props: {
-    show: Boolean,
-  },
   data() {
     return {
       date: "",
@@ -51,14 +41,14 @@ export default {
   },
   methods: {
     ...mapActions(["fetchCategoryList"]),
-    ...mapMutations(["ADD_CATEGORY"]),
+    ...mapMutations(["ADD_CATEGORY", "ADD_PAYMENT_LIST"]),
     onSave() {
       const data = {
         date: this.date || this.getCurrentDate,
         category: this.category || "Not filled",
         value: this.value || "",
       };
-      this.$emit("addPayment", data);
+      this.addPayment(data);
       this.category = "";
       this.value = "";
     },
@@ -67,21 +57,19 @@ export default {
         id: new Date(),
         category: this.newCategory,
       };
-      this.ADD_CATEGORY(category);
-      this.newCategory = "";
+      if (category.category !== "") {
+        this.ADD_CATEGORY(category);
+        this.newCategory = "";
+      }
+    },
+    addPayment(data) {
+      this.ADD_PAYMENT_LIST(data);
     },
   },
   created() {
     this.fetchCategoryList();
-    if (this.categoryList?.length) {
-      this.category = this.categoryList[0].category;
-    }
   },
 };
 </script>
 
-<style module lang="scss">
-.wrapper {
-  //
-}
-</style>
+<style module lang="scss"></style>

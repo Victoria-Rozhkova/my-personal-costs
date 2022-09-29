@@ -1,12 +1,12 @@
 import Vue from "vue";
-import Vuex from "vuex";
 import App from "./App.vue";
-import store from "./store/store.js";
+import store from "./store/store";
 import router from "./router/router";
+import modal from "./plugins/modal";
 
 Vue.config.productionTip = false;
 
-Vue.use(Vuex);
+Vue.use(modal);
 
 new Vue({
   store,

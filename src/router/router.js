@@ -1,6 +1,5 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
-import Dashboard from "../views/Dashboard.vue";
 
 Vue.use(VueRouter);
 
@@ -8,11 +7,19 @@ const routes = [
   {
     path: "/",
     name: "dashboard",
-    component: Dashboard,
+    component: () =>
+      import(/* webpackChunkName: "dashboard" */ "../views/Dashboard.vue"),
+  },
+  {
+    path: "/about",
+    name: "about",
+    component: () =>
+      import(/* webpackChunkName: "about" */ "../views/About.vue"),
   },
   {
     path: "*",
-    // component: Dashboard,
+    component: () =>
+      import(/* webpackChunkName: "notFount" */ "../views/NotFound.vue"),
   },
 ];
 

@@ -1,6 +1,6 @@
 <template>
   <div :class="$style.preloader">
-    <img src="../assets/coin.gif" alt="loading..." />
+    <img src="../assets/images/coin.gif" alt="loading..." />
     <p>Загрузка...</p>
   </div>
 </template>
