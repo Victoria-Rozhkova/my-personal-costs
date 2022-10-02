@@ -8,22 +8,42 @@
       <router-view></router-view>
     </main>
     <transition name="fade">
-      <ModalWindowAddPayment v-if="showModal" :settings="modalSettings" />
+      <ModalWindow v-if="showModal" :settings="modalSettings" />
+    </transition>
+    <transition name="fade">
+      <ContextMenu
+        v-if="showContextMenu"
+        :menu="contextMenuItems"
+        :styles="styles"
+      />
     </transition>
   </div>
 </template>
 
 <script>
-import ModalWindowAddPayment from "./components/ModalWindowAddPayment.vue";
+import ModalWindow from "./components/ModalWindow.vue";
+import ContextMenu from "./components/ContextMenu.vue";
 export default {
   name: "App",
   data() {
     return {
       showModal: false,
       modalSettings: {},
+      showContextMenu: false,
+      contextMenuItems: [],
+      xPos: 0,
+      yPos: 0,
     };
   },
-  components: { ModalWindowAddPayment },
+  components: { ModalWindow, ContextMenu },
+  computed: {
+    styles() {
+      return {
+        top: `${this.yPos + 10}px;`,
+        left: `${this.xPos + 20}px;`,
+      };
+    },
+  },
   methods: {
     modalOpen(settings) {
       this.showModal = true;
@@ -33,14 +53,33 @@ export default {
       this.showModal = false;
       this.modalSettings = {};
     },
+    setPosition(caller) {
+      const pos = caller.getBoundingClientRect();
+      this.yPos = pos.top;
+      this.xPos = pos.left;
+      console.log(this.yPos, this.xPos);
+    },
+    contextOpen({ menu, caller }) {
+      this.showContextMenu = true;
+      this.contextMenuItems = menu;
+      this.setPosition(caller);
+    },
+    contextClose() {
+      this.showContextMenu = false;
+      this.contextMenuItems = [];
+    },
   },
   mounted() {
     this.$modal.EventBus.$on("show", this.modalOpen);
     this.$modal.EventBus.$on("hide", this.modalClose);
+    this.$context.EventBus.$on("open", this.contextOpen);
+    this.$context.EventBus.$on("close", this.contextClose);
   },
   destroyed() {
     this.$modal.EventBus.off("show");
     this.$modal.EventBus.off("hide");
+    this.$context.EventBus.off("open");
+    this.$context.EventBus.off("close");
   },
 };
 </script>

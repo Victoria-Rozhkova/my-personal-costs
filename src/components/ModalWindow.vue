@@ -16,7 +16,7 @@
 import AddPaymentsForm from "./AddPaymentsForm.vue";
 
 export default {
-  name: "ModalWindowAddPayment",
+  name: "ModalWindow",
   props: {
     settings: {
       type: Object,
