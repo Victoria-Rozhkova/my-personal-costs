@@ -10,6 +10,7 @@
 
 Для перехода по страницам использован [Vue Router](https://v3.router.vuejs.org/ru/)
 
+Написаны unit тесты на [Jest](https://jestjs.io/ru/)
 
 ## Первый запуск
 ```

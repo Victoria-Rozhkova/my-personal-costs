@@ -1,5 +1,8 @@
 <template>
-  <div>404 Not Found</div>
+  <div :class="$style.notFound">
+    <p>404 Not Found</p>
+    <img src="../assets/images/404.gif" alt="404" />
+  </div>
 </template>
 
 <script>
@@ -8,4 +11,15 @@ export default {
 };
 </script>
 
-<style></style>
+<style module lang="scss">
+.notFound {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  p {
+    font-size: 30px;
+    font-weight: bold;
+  }
+}
+</style>
