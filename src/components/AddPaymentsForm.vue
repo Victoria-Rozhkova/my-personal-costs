@@ -1,6 +1,6 @@
 <template>
   <div>
-    <input type="date" placeholder="date" v-model="date" />
+    <input type="date" placeholder="date" v-model="date" name="date" />
     <select v-model="category">
       <option value="">Select category</option>
       <option v-for="(c, indx) in categoryList" :key="indx" :value="c.category">
@@ -8,7 +8,7 @@
       </option>
     </select>
     <input type="number" placeholder="value" v-model.number="value" />
-    <button @click="onSave">Save</button>
+    <button @click="onSave" name="save">Save</button>
     <div>
       <input type="text" placeholder="new category" v-model="newCategory" />
       <button @click="addCategory">Add</button>
