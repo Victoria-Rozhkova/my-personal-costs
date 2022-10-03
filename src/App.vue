@@ -1,103 +1,56 @@
 <template>
-  <div id="app">
-    <header>
-      <router-link to="/">Dashboard</router-link> /
-      <router-link to="/about">About</router-link>
-    </header>
-    <main>
-      <router-view></router-view>
-    </main>
-    <transition name="fade">
-      <ModalWindow v-if="showModal" :settings="modalSettings" />
-    </transition>
-    <transition name="fade">
-      <ContextMenu
-        v-if="showContextMenu"
-        :menu="contextMenuItems"
-        :styles="styles"
-      />
-    </transition>
-  </div>
+  <v-app>
+    <v-app-bar app color="primary" dark>
+      <div class="d-flex align-center">
+        <v-img
+          alt="Vuetify Logo"
+          class="shrink mr-2"
+          contain
+          src="https://cdn.vuetifyjs.com/images/logos/vuetify-logo-dark.png"
+          transition="scale-transition"
+          width="40"
+        />
+
+        <v-img
+          alt="Vuetify Name"
+          class="shrink mt-1 hidden-sm-and-down"
+          contain
+          min-width="100"
+          src="https://cdn.vuetifyjs.com/images/logos/vuetify-name-dark.png"
+          width="100"
+        />
+      </div>
+
+      <v-spacer></v-spacer>
+
+      <v-btn
+        href="https://github.com/vuetifyjs/vuetify/releases/latest"
+        target="_blank"
+        text
+      >
+        <span class="mr-2">Latest Release</span>
+        <v-icon>mdi-open-in-new</v-icon>
+      </v-btn>
+    </v-app-bar>
+
+    <v-main>
+      <HelloWorld />
+    </v-main>
+  </v-app>
 </template>
 
 <script>
-import ModalWindow from "./components/ModalWindow.vue";
-import ContextMenu from "./components/ContextMenu.vue";
+import HelloWorld from "./components/HelloWorld";
+
 export default {
   name: "App",
-  data() {
-    return {
-      showModal: false,
-      modalSettings: {},
-      showContextMenu: false,
-      contextMenuItems: [],
-      xPos: 0,
-      yPos: 0,
-    };
+
+  components: {
+    HelloWorld,
   },
-  components: { ModalWindow, ContextMenu },
-  computed: {
-    styles() {
-      return {
-        top: `${this.yPos + 10}px;`,
-        left: `${this.xPos + 20}px;`,
-      };
-    },
-  },
-  methods: {
-    modalOpen(settings) {
-      this.showModal = true;
-      this.modalSettings = settings;
-    },
-    modalClose() {
-      this.showModal = false;
-      this.modalSettings = {};
-    },
-    setPosition(caller) {
-      const pos = caller.getBoundingClientRect();
-      this.yPos = pos.top;
-      this.xPos = pos.left;
-      console.log(this.yPos, this.xPos);
-    },
-    contextOpen({ menu, caller }) {
-      this.showContextMenu = true;
-      this.contextMenuItems = menu;
-      this.setPosition(caller);
-    },
-    contextClose() {
-      this.showContextMenu = false;
-      this.contextMenuItems = [];
-    },
-  },
-  mounted() {
-    this.$modal.EventBus.$on("show", this.modalOpen);
-    this.$modal.EventBus.$on("hide", this.modalClose);
-    this.$context.EventBus.$on("open", this.contextOpen);
-    this.$context.EventBus.$on("close", this.contextClose);
-  },
-  destroyed() {
-    this.$modal.EventBus.off("show");
-    this.$modal.EventBus.off("hide");
-    this.$context.EventBus.off("open");
-    this.$context.EventBus.off("close");
-  },
+
+  data: () => ({
+    //
+  }),
 };
 </script>
-
-<style lang="scss">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  max-width: 1200px;
-  margin: 0 auto;
-  color: #2c3e50;
-}
-.fade-enter-active,
-.fade-leave-active {
-  transition: opacity 0.5s ease;
-}
-
-.fade-enter-from,
-.fade-leave-to {
-  opacity: 0;
-}
-</style>

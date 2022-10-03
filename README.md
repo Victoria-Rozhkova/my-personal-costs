@@ -6,11 +6,15 @@
 
 Выводится общая сумма трат, можно добавлять свои категории.
 
-Для хранения данных используется [Vuex](https://vuex.vuejs.org/)
+* Созданы плагины модального окна и контекстного меню
 
-Для перехода по страницам использован [Vue Router](https://v3.router.vuejs.org/ru/)
+* Для хранения данных используется [Vuex](https://vuex.vuejs.org/)
 
-Написаны unit тесты на [Jest](https://jestjs.io/ru/)
+* Для перехода по страницам использован [Vue Router](https://v3.router.vuejs.org/ru/)
+
+* Написаны unit тесты на [Jest](https://jestjs.io/ru/)
+
+* Для красоты использован [Vuetify](https://vuetifyjs.com/en/)
 
 ## Первый запуск
 ```
