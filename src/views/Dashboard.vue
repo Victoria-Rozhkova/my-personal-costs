@@ -6,7 +6,14 @@
         <Preloader v-if="isLoading" />
         <PaymentsDisplay v-else />
       </v-col>
-      <v-col> <div :class="$style.chart">chart</div></v-col>
+      <v-col>
+        <div :class="$style.chart">
+          <DoughnutChart
+            v-if="!isLoading"
+            :categories="categoryList"
+            :payments="paymentsList"
+          /></div
+      ></v-col>
     </v-row>
   </v-container>
 </template>
@@ -14,21 +21,23 @@
 <script>
 import PaymentsDisplay from "../components/PaymentsDisplay.vue";
 import Preloader from "../components/Preloader.vue";
+import DoughnutChart from "../components/DoughnutChart.vue";
 import { mapActions, mapGetters } from "vuex";
 export default {
   name: "Dashboard",
   components: {
     PaymentsDisplay,
     Preloader,
+    DoughnutChart,
   },
   data() {
     return {};
   },
   computed: {
-    ...mapGetters(["isLoading"]),
+    ...mapGetters(["isLoading", "categoryList", "paymentsList"]),
   },
   methods: {
-    ...mapActions(["fetchData"]),
+    ...mapActions(["fetchData", "fetchCategoryList"]),
     showModal() {
       this.$modal.show({
         title: "Add new payment",
@@ -38,6 +47,7 @@ export default {
   },
   created() {
     this.fetchData();
+    this.fetchCategoryList();
   },
 };
 </script>
