@@ -1,15 +1,14 @@
 <template>
-  <div>
-    <h1>My personal costs</h1>
-    <div :class="$style.dashboard">
-      <div :class="$style.costs">
-        <button @click="showModal">Add new cost +</button>
+  <v-container>
+    <v-row>
+      <v-col>
+        <h1 class="text-h4 text-sm-h3 mt-5 mb-5 ml-12">My personal costs</h1>
         <Preloader v-if="isLoading" />
         <PaymentsDisplay v-else />
-      </div>
-      <div :class="$style.chart">chart</div>
-    </div>
-  </div>
+      </v-col>
+      <v-col> <div :class="$style.chart">chart</div></v-col>
+    </v-row>
+  </v-container>
 </template>
 
 <script>
@@ -49,6 +48,10 @@ export default {
   gap: 150px;
 }
 .costs {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  gap: 15px;
   width: 400px;
 }
 .chart {
