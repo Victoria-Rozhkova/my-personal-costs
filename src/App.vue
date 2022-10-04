@@ -42,8 +42,8 @@ export default {
   computed: {
     styles() {
       return {
-        top: `${this.yPos + 10}px;`,
-        left: `${this.xPos + 20}px;`,
+        top: `${this.yPos + 10}px`,
+        left: `${this.xPos + 20}px`,
       };
     },
   },

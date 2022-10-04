@@ -37,12 +37,8 @@ export default {
 
 <style module lang="scss">
 .context {
-  position: relative;
-  width: 50%;
   &__wrap {
     position: absolute;
-    right: -50px;
-    bottom: 435px;
     background: #f1f8e9;
     padding: 12px;
     border-radius: 5px;

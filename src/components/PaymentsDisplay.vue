@@ -133,7 +133,6 @@ export default {
     },
     deleteItemConfirm() {
       this.DELETE_PAYMENT(this.editedIndex);
-      // this.paymentsList.splice(this.editedIndex, 1);
       this.closeDelete();
     },
     close() {
