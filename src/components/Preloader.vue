@@ -1,7 +1,7 @@
 <template>
   <div :class="$style.preloader">
     <img src="../assets/images/coin.gif" alt="loading..." />
-    <p>Загрузка...</p>
+    <p class="text-button">Загрузка...</p>
   </div>
 </template>
 
