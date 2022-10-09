@@ -1,6 +1,5 @@
 <template>
   <v-container>
-    <h2 class="text-h3 text-sm-h5 mt-5 mb-5 ml-12">Costs by categories</h2>
     <Doughnut
       :chart-options="chartOptions"
       :chart-data="chartData"
@@ -103,11 +102,27 @@ export default {
         ],
       },
       chartOptions: {
-        responsive: true,
+        responsive: false,
         maintainAspectRatio: false,
+        plugins: {
+          legend: {
+            display: true,
+            position: "right",
+          },
+          title: {
+            display: true,
+            text: "Costs by categories",
+            align: "start",
+            font: {
+              size: 24,
+              weight: 400,
+              lineHeight: 2,
+              family: "'Roboto','sans-serif'",
+            },
+          },
+        },
       },
     };
   },
-  computed: {},
 };
 </script>

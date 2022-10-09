@@ -1,13 +1,13 @@
 <template>
   <v-container>
-    <v-row>
+    <v-row align="center">
       <v-col>
         <h1 class="text-h4 text-sm-h3 mt-5 mb-5 ml-12">My personal costs</h1>
         <Preloader v-if="isLoading" />
         <PaymentsDisplay v-else />
       </v-col>
-      <v-col>
-        <div :class="$style.chart">
+      <v-col class="d-flex justify-center">
+        <div>
           <DoughnutChart
             v-if="!isLoading"
             :categories="categoryList"
@@ -63,8 +63,5 @@ export default {
   align-items: start;
   gap: 15px;
   width: 400px;
-}
-.chart {
-  //
 }
 </style>
