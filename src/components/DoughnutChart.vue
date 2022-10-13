@@ -23,9 +23,17 @@ import {
   Legend,
   ArcElement,
   CategoryScale,
+  DoughnutController,
 } from "chart.js";
 
-ChartJS.register(Title, Tooltip, Legend, ArcElement, CategoryScale);
+ChartJS.register(
+  Title,
+  Tooltip,
+  Legend,
+  ArcElement,
+  CategoryScale,
+  DoughnutController
+);
 
 export default {
   name: "DoughnutChart",
