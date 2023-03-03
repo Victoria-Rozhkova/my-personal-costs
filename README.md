@@ -20,6 +20,8 @@
 
 * Для красоты использован [Vuetify](https://vuetifyjs.com/en/) и module SCSS
 
+## [Посмотреть Demo ](https://victoria-rozhkova.github.io/my-personal-costs/)
+
 ![preview](https://github.com/Victoria-Rozhkova/my-personal-costs/blob/preview/preview.JPG)
 
 ## Первый запуск
