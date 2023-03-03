@@ -5,6 +5,7 @@
   "homepage": "https://Victoria-Rozhkova.github.io/my-personal-costs",
   "scripts": {
     "serve": "vue-cli-service serve",
+    "predeploy": "npm run build",
     "build": "vue-cli-service build",
     "deploy": "gh-pages -d dist",
     "lint": "vue-cli-service lint",
