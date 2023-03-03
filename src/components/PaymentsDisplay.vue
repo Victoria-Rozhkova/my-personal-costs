@@ -54,12 +54,12 @@
           </div>
         </v-toolbar>
       </template>
-      <template v-slot:item.actions="{ item }">
+      <template v-slot:[`item.actions`]="{ item }">
         <v-icon @click="openContextMenu($event, item)"
           >mdi-dots-vertical</v-icon
         >
       </template>
-      <template #item.value="{ item }">{{ item.value }} $</template>
+      <template #[`item.value`]="{ item }">{{ item.value }} $</template>
     </v-data-table>
     <div class="text-center pt-2">
       <v-pagination
