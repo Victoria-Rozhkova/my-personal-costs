@@ -2,6 +2,8 @@
 
 ## Приложение для подсчёта трат
 
+## [Посмотреть Demo ](https://victoria-rozhkova.github.io/my-personal-costs/)
+
 В приложение можно добавлять расходы, указав категорию трат, сумму и дату. Если дату не указать, по умолчанию добавляется сегодняшняя.
 
 * Созданы плагины модального окна и контекстного меню
@@ -20,9 +22,7 @@
 
 * Для красоты использован [Vuetify](https://vuetifyjs.com/en/) и module SCSS
 
-## [Посмотреть Demo ](https://victoria-rozhkova.github.io/my-personal-costs/)
-
-![preview](https://github.com/Victoria-Rozhkova/my-personal-costs/blob/preview/preview.JPG)
+![preview](https://raw.githubusercontent.com/Victoria-Rozhkova/my-personal-costs/refs/heads/preview/preview.JPG)
 
 ## Первый запуск
 ```
@@ -32,4 +32,4 @@ yarn install
 ```
 yarn serve
 ```
-**Стек: Javascript, Vue, Vuex, Router**
+**Стек: Vue, Vuex, Router, Chart JS**

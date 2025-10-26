@@ -80,7 +80,32 @@ export default {
   },
   data() {
     return {
-      chartData: {
+      chartOptions: {
+        responsive: false,
+        maintainAspectRatio: false,
+        plugins: {
+          legend: {
+            display: true,
+            position: "right",
+          },
+          title: {
+            display: true,
+            text: "Costs by categories",
+            align: "start",
+            font: {
+              size: 24,
+              weight: 400,
+              lineHeight: 2,
+              family: "'Roboto','sans-serif'",
+            },
+          },
+        },
+      },
+    };
+  },
+  computed: {
+    chartData() {
+      return {
         labels: this.categories,
         datasets: [
           {
@@ -108,29 +133,8 @@ export default {
             }),
           },
         ],
-      },
-      chartOptions: {
-        responsive: false,
-        maintainAspectRatio: false,
-        plugins: {
-          legend: {
-            display: true,
-            position: "right",
-          },
-          title: {
-            display: true,
-            text: "Costs by categories",
-            align: "start",
-            font: {
-              size: 24,
-              weight: 400,
-              lineHeight: 2,
-              family: "'Roboto','sans-serif'",
-            },
-          },
-        },
-      },
-    };
+      };
+    },
   },
 };
 </script>

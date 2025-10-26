@@ -83,8 +83,6 @@ export default {
   data() {
     return {
       date: "",
-      category: "",
-      value: "",
       newCategory: "",
       menu2: false,
     };
@@ -134,7 +132,12 @@ export default {
       }
     },
     addPayment(data) {
-      this.ADD_PAYMENT_LIST(data);
+      const date = new Date(data.date).toLocaleDateString("ru-RU", {
+        day: "numeric",
+        month: "numeric",
+        year: "numeric",
+      });
+      this.ADD_PAYMENT_LIST({ ...data, date });
     },
   },
   created() {
